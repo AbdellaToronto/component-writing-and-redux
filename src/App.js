@@ -1,28 +1,14 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { FancyButton } from './components/my-button';
+import { UserCard } from './components/user-item';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
-
-export default App;
+export default () => <div>
+  <h1>Architectural Example</h1>
+  <FancyButton onClick={() => alert('clicked button')}>Hello</FancyButton>
+  <UserCard
+    user={{name: 'Della', data: 'Some random data here'}}
+    actionLabel="Delete User"
+    onUserAction={(user)=> alert(`${user.name}: user deleted`)}
+  />
+</div>;
