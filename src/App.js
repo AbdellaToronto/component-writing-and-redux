@@ -3,14 +3,16 @@ import './App.css';
 import { FancyButton } from './components/my-button';
 import { UserCard } from './components/user-item';
 import { connect } from 'react-redux';
+import { AsyncTestAction } from './actions';
 
 
 export default connect((state) => state, {
-  deleteUser: (payload) => ({type: 'DELETE', payload})
+  deleteUser: (payload) => ({type: 'DELETE', payload}),
+  asyncTest: AsyncTestAction
 })
-(({mainUser, otherUsers, deleteUser}) => <div>
+(({mainUser, otherUsers, deleteUser, asyncTest}) => <div>
   <h1>Architectural Example</h1>
-  <FancyButton onClick={() => alert('clicked button')}>Hello</FancyButton>
+  <FancyButton onClick={() => asyncTest('https://next.json-generator.com/api/json/get/Ey1ebRSNI')}>Hello</FancyButton>
   <UserCard
     user={mainUser}
     actionLabel="Nav To User"

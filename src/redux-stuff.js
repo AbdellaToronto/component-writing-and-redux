@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 
 const userList = [
@@ -14,6 +15,8 @@ const reducers = combineReducers({
   otherUsers: (state = userList, action) => {
 
     switch(action.type) {
+      case 'GOT_ASYNC_THING':
+        return action.payload.map(r => ({name: r._id, data: r.address}));
       case 'DELETE':
         return state.filter(u => u.name !== action.payload.name);
       default:
@@ -22,4 +25,4 @@ const reducers = combineReducers({
   }
 });
 
-export const store = createStore(reducers, applyMiddleware(logger));
+export const store = createStore(reducers, applyMiddleware(logger, thunk));
